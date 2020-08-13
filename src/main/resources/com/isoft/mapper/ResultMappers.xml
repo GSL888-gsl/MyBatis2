@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isoft.mapper.resultmapper">
+    <resultMap id="UserMap" type="User2">
+        <id column="id" property="uid"/>
+        <result column="name" property="uname"/>
+        <result column="pass" property="upass"/>
+        <result column="moblie" property="moblie"/>
+        <result column="birthday" property="birthday"/>
+        <result column="regDatetime" property="reg"/>
+    </resultMap>
+
+    <resultMap id="NewsTypeMap" type="NewsType">
+        <result property="id" column="tid" />
+        <result property="typename" column="typename" />
+        <collection property="newsList" ofType="News">
+            <id column="id" property="id" />
+            <result column="typeid" property="typeid" />
+            <result column="title" property="title" />
+            <result column="content" property="content" />
+            <result column="pubdatetime" property="pubdatetime" />
+            <result column="comefrom" property="comefrom" />
+        </collection>
+    </resultMap>
+
+
+    <resultMap id="NewsMap" type="News">
+        <id column="id" property="id" />
+        <result column="typeid" property="typeid" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="pubdatetime" property="pubdatetime" />
+        <result column="comefrom" property="comefrom" />
+        <association property="newsType" javaType="NewsType">
+            <result property="id" column="tid" />
+            <result property="typename" column="typename" />
+        </association>
+    </resultMap>
+
+</mapper>
